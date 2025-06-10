@@ -1,0 +1,133 @@
+body {
+    background-color: #202020; 
+    margin: 0; 
+    font-family: 'Anton SC', sans-serif; 
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 96px;
+    position: fixed; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    background: #211818;
+    z-index: 1000; 
+}
+
+.logo-navbar {
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+}
+
+.logo-navbar span {
+    font-size: 60px;
+    font-family: 'Jua', sans-serif;
+}
+
+.logo-navbar img {
+    height: 100px;
+    margin-right: 10px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    margin-right: 40px;
+    padding: 0;
+    
+}
+
+.nav-links li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 40px;
+    font-family: 'Anton SC', sans-serif;
+    
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    text-decoration: underline;
+    color: #909090;
+}
+
+.navBurger{
+	position: fixed;
+	top: 0;
+	right: -300px;
+	width: 250px;
+	height: 100%;
+	background-color: #211818;
+	box-shadow: -5px 0 10px rgba(0, 0, 0, 0.2);
+	transition: right 0.3s ease-in-out;
+	padding-top: 60px;
+	z-index: 99;
+}
+
+.navBurger.active{ right: 0; }
+
+.navBurger ul{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.navBurger ul li{
+	padding: 15px;
+	text-align: center;
+}
+
+.navBurger ul li a{
+	text-decoration: none;
+	color: #ffffff;
+	font-size: 22px;
+	display: block;
+	padding: 10px;
+	transition: background-color 0.3s ease, color 0.3s ease;
+	font-family: 'Anton SC', sans-serif;
+}
+
+.navBurger ul li a:hover, .navBurger ul li a.active{
+	text-decoration: underline;
+	color: #909090;
+}
+
+.iconBurger{
+	display: none;
+	cursor: pointer;
+	z-index: 100;
+    margin-right: 40px;
+}
+
+@media (max-width: 1450px){
+	.nav-links{ display: none; }
+	.iconBurger{ display: block; }
+}
+
+@media (max-width: 720px){
+    .navBurger{ width: 200px; }
+	.navBurger ul li a{ font-size: 18px; }
+}
+
+@media (max-width: 500px){
+    .logo-navbar img {
+        height: 65px;
+    }
+    .logo-navbar span {
+        font-size: 30px;
+    }
+
+}

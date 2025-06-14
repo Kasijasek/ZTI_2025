@@ -10,6 +10,9 @@ from decimal import Decimal
 import datetime
 from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiExample
 from drf_spectacular.types import OpenApiTypes
+from utils.email_notifications import notify_user_by_email
+
+
 from .serializers import UserSerializer, IncomesCategorySerializer, ExpensesCategorySerializer, \
     IncomesSerializer, ExpensesSerializer, UserProfileSerializer, ChangePasswordSerializer, UserAdminSerializer, ValidationErrorSerializer, ErrorSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
@@ -106,6 +109,13 @@ class CreateUserView(generics.CreateAPIView):
     )
     def post(self, request, *args, **kwargs):
         return super().post(request, *args, **kwargs)
+    def perform_create(self, serializer):
+        user = serializer.save()
+        notify_user_by_email(
+            to=user.email,
+            subject="Witaj w SaveSpace!",
+            body=f"Cześć {user.username}, Twoje konto zostało utworzone!"
+        )
 
 
 class AdminUserListView(generics.ListCreateAPIView):

@@ -1,3 +1,5 @@
+version: '3.9'
+
 services:
   db:
     image: postgres:15-alpine
@@ -42,6 +44,7 @@ services:
       - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
     depends_on:
       - db
+      - email-service
     networks:
       - main_network
     env_file:
@@ -61,11 +64,20 @@ services:
     networks:
       - main_network
 
+  email-service:
+    build:
+      context: ./email-service
+    container_name: email-service
+    ports:
+      - "8001:8001"
+    env_file:
+      - ./email-service/.env
+    networks:
+      - main_network
+
 networks:
   main_network:
     driver: bridge
 
 volumes:
   postgres_data:
-
-
